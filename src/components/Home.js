@@ -13,7 +13,18 @@ function Home() {
             console.log("error", error);
         }
     };
-   
+    function UpdateMovies(newmovie, id) {
+        let UpdateMovie = movie.map(movie => {
+            if (movie.id == id) {
+                movie.comment = newmovie.comment;
+                return movie;
+            } else {
+                return movie;
+            }
+        })
+        setMovie(UpdateMovie);
+    }
+    
     useEffect(() => {
         getMovie();
     }, []);
@@ -21,8 +32,10 @@ function Home() {
     return (
         <>
             <h1> Movie App</h1>
+            <h1>movies List:</h1>
+
                 {
-                    movie && (<MovieList movies={movie} />)
+                    movie && (<MovieList movies={movie} UpdateMovies={UpdateMovies} />)
                 }
          
 
